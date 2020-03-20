@@ -36,4 +36,6 @@ def draw():
     stroke(*lista[index])
 def mousePressed():
     exit()
-        
+ 
+ # obiekty miały się poruszać po innym torze
+ #1,75pkt       
