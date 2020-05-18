@@ -3,37 +3,43 @@ def setup():
     textSize(150)
 def draw():
     clear()
+    B = text("B",width/2-50, height/2)
+    G = text("G", width/2+50, height/2)
     print(hex(get(mouseX,mouseY)))
     print(keyPressed)
     print(keyCode)
     print(mouseX,mouseY)
-    B = text("B",width/2-50, height/2)
-    G = text("G", width/2+50, height/2)
+    B
+    G
     if keyPressed:
-        if keyCode == 39:
-            B=text("B", width/2+50, height/2)
+        if keyCode == 39: # to miało działąć tylko gdy coś już zaznaczone
+            # dużo łatwiej jest najpierw wybrać kolor a później w nim napisać
             fill(100,200,300)
-            G=text("G", width/2+50, height/2)
+            B
             fill(200,255,50)
+            G
         elif key =="B" or key=="b":
-            B=text("B", width/2+50, height/2)
             fill(70,140,230)
-            G=text("G", width/2-50, height/2)
+            B
             fill(23,25,77)
+            G
         elif keyCode == 37:
-            G=text("G", width/2-50, height/2)
             fill(122,130,100)
-            B=text("B", width/2+50, height/2)
+            G
             fill(122,222,2)
+            B
     elif (mouseX>(width/2-50)) and(mouseX<width/2) and (mouseY<height/2) and (mouseY>height/2-50):
-        B=text("B",width/2-50,height/2)
         fill(23,130,150)
-        G=text("G", width/2+50, height/2)
+        B
         fill(45,35,200)
+        G
     elif (mouseX>(width/2+50)) and (mouseX<width/2+50) and(mouseY<height/2) and (mouseY>height/2-50):
-       G=text("G", width/2+50, height/2)
        fill(34,250,120)    
-       B=text("B",width/2-50,height/2)  
-       fill(250,26,254)   
+       G
+       fill(250,26,254)
+       B 
     else:
         fill(42,100,250)
+    # miały reagować pojedyncze litery, a nie zawsze obie, ale ok
+    # brak kształtu własnego podkreślającego
+1pkt
