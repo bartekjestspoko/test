@@ -30,7 +30,7 @@ class player(object):
 def setup():
     size(q,g)
     global t
-    t = player()
+    t = player() # miały być dwa obiekty tej klasy
     
 def draw():
     background(412414)
@@ -56,3 +56,5 @@ def keyReleased():
         t.left=0
     if keyCode == RIGHT:
         t.right=0
+
+# 1,75pkt, choć nie pierwszy raz widzę ten kod...
