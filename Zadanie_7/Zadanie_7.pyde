@@ -44,3 +44,5 @@ def mouseClicked():
         Wild.definicja()
         if isinstance(Wild, Lion): 
             Wild.chcemmalpkie()
+# nie ma dopisanej kolejnej klasy, liczba jest taka jak była, pozmieniane zostały szczegóły (nazwy), nie zostało nadpisane odejmowanie, a pozostało dodawanie...
+# 0,25pkt
