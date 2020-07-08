@@ -35,32 +35,14 @@ class Customer():
         else:
             self.book = ""
             return False
-        
-class Bartosz():
-    book = "" 
-    haveBook = False
-    def requestBook(self, book): 
-        print("Book You want to borrow is choosen.")
-        self.book = book
-        self.haveBook = True
-        return self.book
-    def returnBook(self): 
-        print("Book which you returning is {}".format(self.book))
-        if self.haveBook:
-            self.haveBook = False
-            return self.book
-        else:
-            self.book = ""
-            return False
-
-
+     
 def setup():
     size(220,100)
     global library, Kasia, Gruza
     books = ["Naocznosc", "Sens Sztuki", "Harry Potter", "Lalka"]
     library = Library(books) 
     Kasia = Customer()
-    Gruza = Bartosz()
+    Gruza = Customer()
     
 def draw():
     library.displayAvailableBooks()
@@ -74,31 +56,31 @@ def draw():
 def mouseClicked(): 
     if mouseX >100 and mouseX<200:
         if mouseY >10 and mouseY <30:
-            library.lendBook(Kasia.requestBook("Naocznosc")) 
-        if mouseY >40 and mouseY <60:
-            library.addBook(Kasia.returnBook())
-            
-def mouseClicked():
-    if mouseX >100 and mouseX<200:
-        if mouseY >10 and mouseY <30:
+            library.lendBook(Kasia.requestBook("Naocznosc"))
             library.lendBook(Gruza.requestBook("Lalka")) 
         if mouseY >40 and mouseY <60:
+            library.addBook(Kasia.returnBook())
             library.addBook(Gruza.returnBook())
+            
             
 class requestten(unittest.TestCase):
 
-    def BarG(self):
-        self.Gruza = Customer()
+    def test_BarteG(self): # nazwy testów nie mogą się powtarzać i powinny zaczynać się od 'test'
+        Gruza = Customer() # testy powinny być od siebie niezależne, a więc obiekty definiowane w nich bezpośrednio
         books = ["Naocznosc", "Sens Sztuki", "Harry Potter"]
-        self.library = Library(books) 
+        library = Library(books) # self wskazuje na klasę w której jesteśmy, teraz jesteśmy w kalsie testów, więc używanie self jako wskazania napole wewnętrzne obecnej klasy przy klasach customer i library jest błędne
+        library.lendBook(Gruza.requestBook("Harry Potter"))
+        self.assertEqual(["Naocznosc", "Sens Sztuki"], library.availableBooks)
+        self.assertEqual(Gruza.book, "Harry Potter")
+        self.assertTrue(Gruza.haveBook)
 
-
-    def BarteG(self):
-        self.library.lendBook(self.Gruza.requestBook("Harry Potter"))
-        self.assertEqual(["Naocznosc", "Sens Sztuki"], self.library.availableBooks)
-        self.assertEqual(self.Gruza.book, "Harry Potter")
-        self.assertTrue(self.Gruza.haveBook)
-
-    def BartekG(self):
-        self.library.addBook("Marsjanin")
-        self.assertEqual(["Naocznosc", "Sens Sztuki", "Harry Potter", "Lalka"], self.library.availableBooks)
+    def test_Bartek(self):
+        books = ["Naocznosc", "Sens Sztuki", "Harry Potter", "Lalka"]
+        library = Library(books)
+        library.addBook("Marsjanin")
+        self.assertEqual(["Naocznosc", "Sens Sztuki", "Harry Potter", "Lalka", "Marsjanin"], library.availableBooks)
+        
+if __name__ == '__main__':
+    unittest.main()
+    
+# 1,5pkt
