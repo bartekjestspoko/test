@@ -33,24 +33,6 @@ class Customer():
         else:
             self.book = ""
             return False
-        
-class BartekG():
-    book = "" 
-    haveBook = False
-    def requestBook(self, book): 
-        print("Book You want to borrow is choosen.")
-        self.book = book
-        self.haveBook = True
-        return self.book
-    def returnBook(self): 
-        print("Book which you returning is {}".format(self.book))
-        if self.haveBook:
-            self.haveBook = False
-            return self.book
-        else:
-            self.book = ""
-            return False
-
 
 def setup():
     size(220,100)
@@ -58,7 +40,7 @@ def setup():
     books = ["Naocznosc", "Sens Sztuki", "Harry Potter", "Lalka"]
     library = Library(books) 
     Kasia = Customer()
-    Bartosz = BartekG()
+    Bartosz = Customer() # klasy są po to by móc szybko tworzyć wiele obiektów o tej samej funkcjonalności
     
 def draw():
     library.displayAvailableBooks()
@@ -72,13 +54,10 @@ def draw():
 def mouseClicked(): 
     if mouseX >100 and mouseX<200:
         if mouseY >10 and mouseY <30:
-            library.lendBook(Kasia.requestBook("Naocznosc")) 
-        if mouseY >40 and mouseY <60:
-            library.addBook(Kasia.returnBook())
-            
-def mouseClicked():
-    if mouseX >100 and mouseX<200:
-        if mouseY >10 and mouseY <30:
+            library.lendBook(Kasia.requestBook("Naocznosc"))
             library.lendBook(Bartosz.requestBook("Lalka")) 
         if mouseY >40 and mouseY <60:
+            library.addBook(Kasia.returnBook())
             library.addBook(Bartosz.returnBook())
+            
+#0,25/0,5pkt za tę część
